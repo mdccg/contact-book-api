@@ -8,7 +8,7 @@
 - Birthday (Date, required, < today)
   
 /contacts
-&rarr; POST /
-&rarr; GET /
-&rarr; GET /name/:name
-&rarr; GET /birthday/period
+- POST /
+- GET /
+- GET /name/:name
+- GET /birthday/period
