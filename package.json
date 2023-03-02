@@ -1,0 +1,8 @@
+{
+  "name": "contact-book-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mdccg/contact-book-api.git",
+  "author": "Lab 3 <matheusdanielgomess@gmail.com>",
+  "license": "MIT"
+}
