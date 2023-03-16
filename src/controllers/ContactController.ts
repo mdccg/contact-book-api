@@ -29,6 +29,34 @@ export class ContactController {
     return res.status(400).json({ errorMessages });
   }
 
+  async findByName(req: Request, res: Response) {
+    const { name } = req.params;
+
+    const contacts = await this.contactDAO.findByName(name);
+
+    return res.json({ contacts });
+  }
+
+  async findByBirthdayPeriod(req: Request, res: Response) {
+    const { start, end } = req.query;
+    const startDate = new Date(`${start}`);
+    const endDate = new Date(`${end}`);
+
+    const errorMessages: string[] = [];
+
+    if (startDate <= endDate) {
+      const contacts = await this.contactDAO.findByBirthdayPeriod(
+        startDate,
+        endDate
+      );
+
+      return res.json({ contacts });
+    }
+
+    errorMessages.push('Start date cannot be greater than end date');
+    return res.status(400).json({ errorMessages });
+  }
+
   public get contactDAO(): ContactDAO {
     return this._contactDAO;
   }
