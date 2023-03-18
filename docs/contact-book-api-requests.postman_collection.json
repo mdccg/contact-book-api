@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "70635467-88eb-4bb7-8426-3770baadaaa4",
+		"name": "Context Book API Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25754970"
+	},
+	"item": [
+		{
+			"name": "Save a new contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('it should save a new valid contact', () => {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    const response = pm.response.json();\r",
+							"    const { contact } = response;\r",
+							"    pm.expect(contact._id).to.not.equal(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{contactName}}\",\r\n    \"email\": \"matheus.gomes@estudante.ifms.edu.br\",\r\n    \"phone\": \"(67) 94002-8922\",\r\n    \"birthday\": \"2001-11-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save a new contact with invalid name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('it should not save a contact with invalid name', () => {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    const response = pm.response.json();\r",
+							"    const { errorMessages: { 0: errorMessage } } = response;\r",
+							"    pm.expect(errorMessage).to.equal('Name cannot be empty');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"\",\r\n    \"email\": \"matheus.gomes@estudante.ifms.edu.br\",\r\n    \"phone\": \"(67) 94002-8922\",\r\n    \"birthday\": \"2001-11-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save a new contact with invalid email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('it should not save a contact with invalid email', () => {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    const response = pm.response.json();\r",
+							"    const { errorMessages: { 0: errorMessage } } = response;\r",
+							"    pm.expect(errorMessage).to.equal('Invalid email');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Matheus D. C. C. Gomes\",\r\n    \"email\": \"\",\r\n    \"phone\": \"(67) 94002-8922\",\r\n    \"birthday\": \"2001-11-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save a new contact with invalid phone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('it should not save a contact with invalid phone', () => {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    const response = pm.response.json();\r",
+							"    const { errorMessages: { 0: errorMessage } } = response;\r",
+							"    pm.expect(errorMessage).to.equal('Phone must have the following pattern: (99) 99999-9999');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Matheus D. C. C. Gomes\",\r\n    \"email\": \"matheus.gomes@estudante.ifms.edu.br\",\r\n    \"phone\": \"(67)4002-8922\",\r\n    \"birthday\": \"2001-11-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save a new contact with invalid birthday",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('it should not save a contact with invalid birthday', () => {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    const response = pm.response.json();\r",
+							"    const { errorMessages: { 0: errorMessage } } = response;\r",
+							"    pm.expect(errorMessage).to.equal('Birthday must be previous to today');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Matheus D. C. C. Gomes\",\r\n    \"email\": \"matheus.gomes@estudante.ifms.edu.br\",\r\n    \"phone\": \"(67) 94002-8922\",\r\n    \"birthday\": \"2026-11-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter contacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find contacts by name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('should retrieve correct contacts', () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    const response = pm.response.json();\r",
+							"    const { contacts } = response;\r",
+							"    pm.expect(contacts.length).to.be.greaterThan(0);\r",
+							"    const contact = contacts[0];\r",
+							"    const contactName = pm.collectionVariables.get('contactName');\r",
+							"    const isSubstring = contact.name.toLowerCase().includes(\r",
+							"        contactName.toLowerCase()\r",
+							"    );\r",
+							"    pm.expect(isSubstring).to.equal(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/contacts/name/{{contactName}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"name",
+						"{{contactName}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find contacts by name substring",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('should retrieve correct contacts', () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    const response = pm.response.json();\r",
+							"    const { contacts } = response;\r",
+							"    pm.expect(contacts.length).to.be.greaterThan(0);\r",
+							"    const contact = contacts[0];\r",
+							"    const contactName = pm.collectionVariables.get('contactNameSubstr');\r",
+							"    const isSubstring = contact.name.toLowerCase().includes(\r",
+							"        contactName.toLowerCase()\r",
+							"    );\r",
+							"    pm.expect(isSubstring).to.equal(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/contacts/name/{{contactNameSubstr}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"name",
+						"{{contactNameSubstr}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get contacts within birthday period",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('should retrieve correct contacts within birthday period', () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    const response = pm.response.json();\r",
+							"    const { contacts } = response;\r",
+							"    pm.expect(contacts.length).to.greaterThan(0);\r",
+							"    const start = pm.collectionVariables.get('startDate');\r",
+							"    const end = pm.collectionVariables.get('endDate');\r",
+							"    const startDate = new Date(start);\r",
+							"    const endDate = new Date(end);\r",
+							"    \r",
+							"    contacts.forEach((contact) => {\r",
+							"        const { birthday: rawBirthday } = contact;\r",
+							"        const birthday = new Date(rawBirthday);\r",
+							"        const verification = birthday >= startDate && birthday <= endDate;\r",
+							"        pm.expect(verification).to.equal(true);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/contacts/birthday?startDate={{startDate}}&endDate={{endDate}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"birthday"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "{{startDate}}"
+						},
+						{
+							"key": "endDate",
+							"value": "{{endDate}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find contacts with birthday period start date greater than end date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('', () => {});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/contacts/birthday?startDate={{endDate}}&endDate={{startDate}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"birthday"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "{{endDate}}"
+						},
+						{
+							"key": "endDate",
+							"value": "{{startDate}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:3001",
+			"type": "string"
+		},
+		{
+			"key": "contactName",
+			"value": "Renata",
+			"type": "string"
+		},
+		{
+			"key": "contactNameSubstr",
+			"value": "ATA",
+			"type": "string"
+		},
+		{
+			"key": "startDate",
+			"value": "2001-01-01",
+			"type": "string"
+		},
+		{
+			"key": "endDate",
+			"value": "2001-12-31",
+			"type": "string"
+		}
+	]
+}
