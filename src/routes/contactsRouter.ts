@@ -7,3 +7,4 @@ const contactController = new ContactController();
 contactsRouter.post('/', (req, res) => contactController.save(req, res));
 contactsRouter.get('/name/:name', (req, res) => contactController.findByName(req, res));
 contactsRouter.get('/birthday', (req, res) => contactController.findByBirthdayPeriod(req, res));
+contactsRouter.get('/email/:email', (req, res) => contactController.findByEmail(req, res));

@@ -1,3 +1,4 @@
+import { FilterQuery } from 'mongoose';
 import { ContactModel, IContact } from './../domains/ContactModel';
 
 export class ContactDAO {
@@ -26,5 +27,11 @@ export class ContactDAO {
     });
 
     return contacts;
+  }
+
+  async findByEmail(email: string) {
+    const options: FilterQuery<IContact> = { email };
+    const contact = await ContactModel.findOne(options);
+    return contact;
   }
 }
