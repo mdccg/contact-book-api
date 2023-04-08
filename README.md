@@ -13,9 +13,17 @@
 
 ## Motivação
 
-Este app consiste em uma API de uma agenda telefônica. A agenda armazena o nome, o endereço de e-mail, o número de telefone e a data de nascimento de um contato; sendo facultativo apenas o endereço de e-mail. Os testes unitários feitos neste projeto verificam se todos os campos obrigatórios foram informados, se os números de telefone informados obedecem ao formato "(99) 99999-9999" e se as datas de nascimento informadas são anteriores ao dia atual.
+Este app consiste em uma API de uma agenda telefônica.
 
-Vale destacar que o presente app se encontra em andamento.
+A agenda armazena o nome, o endereço de e-mail, o número de telefone e a data de nascimento de um contato; sendo facultativo apenas o endereço de e-mail. O arquivo [`contact-book-api-requests.postman_collection.json`](./docs/contact-book-api-requests.postman_collection.json), presente no diretório [`docs/`](./docs/), é uma coleção de requisições e testes de API solicitada para a primeira atividade avaliativa da unidade curricular. A coleção contém quatro requisições para salvar novos contatos com diferentes tipos de erros de validação. Cada requisição contém um script de teste que garante que a resposta da API corresponda ao resultado esperado para o erro de validação fornecido. As quatro requisições da coleção consistem em:
+
+1. Salvar um novo contato com dados de entrada válidos. O script de teste verifica se o status da resposta é 201 e se o objeto de contato retornado possui uma propriedade `_id` não nula;
+
+2. Impedir que um contato com um nome vazio seja salvo. O script de teste verifica se o status da resposta é 400 e se a mensagem de erro é "Nome não pode estar vazio";
+
+3. Impedir que um contato com um e-mail inválido seja salvo. O script de teste verifica se o status da resposta é 400 e se a mensagem de erro é "E-mail inválido";
+
+4. Impedir que um contato com um número de telefone inválido seja salvo. O script de teste verifica se o status da resposta é 400 e se a mensagem de erro é "Número de telefone inválido".
 
 Este foi o segundo repositório de código apresentado no [Curso Superior de TSI do IFMS](https://www.ifms.edu.br/campi/campus-aquidauana/cursos/graduacao/sistemas-para-internet/sistemas-para-internet) como requisito para obtenção da nota parcial das atividades da unidade curricular Linguagem de Programação III.
 
@@ -79,6 +87,6 @@ Para Yarn:
 $ yarn dev
 ```
 
-5. Abra o Postman e importe o arquivo de coleção Postman [`context-book-api-requests.postman_collection.json`](./context-book-api-requests.postman_collection.json) para executar os testes unitários dos serviços de consulta;
+5. Abra o Postman e importe o arquivo de coleção Postman [`contact-book-api-requests.postman_collection.json`](./docs/contact-book-api-requests.postman_collection.json) para executar os testes unitários dos serviços de consulta;
 
 Como alternativa ao Postman, você pode instalar as dependências globais [`newman`](https://npmjs.com/package/newman) e [`newman-reporter-htmlextra`](https://npmjs.com/package/newman-reporter-htmlextra) para gerar relatórios sobre o arquivo em questão via interface de linha de comando e interface gráfica do usuário, respectivamente.
