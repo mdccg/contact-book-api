@@ -53,7 +53,8 @@ As seguintes tecnologias foram utilizadas para desenvolver este app:
 
 - [Node](https://nodejs.org/en/download/);
 - [Yarn](https://yarnpkg.com/) (opcional);
-- [Postman](https://www.postman.com/) (opcional).
+- [Postman](https://www.postman.com/) (opcional);
+- [Docker](https://www.docker.com/).
 
 ### Passo a passo
 
@@ -73,7 +74,21 @@ Caso esteja utilizando o gerenciador de pacotes Yarn, execute o seguinte comando
 $ yarn
 ```
 
-4. Execute o seguinte comando para iniciar o app:
+4. Com o Docker instalado, execute o comando abaixo para levantar o _container_ Docker com o respectivo banco de dados virtualizado. Certifique-se de estar no diretório do arquivo `docker-compose.yml`;
+
+```console
+$ docker-compose up -d
+```
+
+O parâmetro `-d` serve para desocupar o shell de comando logo após a execução do comando. É uma boa convenção, ao encerrar a execução do app, derrubar o _container_ levantado através do comando:
+
+```console
+$ docker-compose down
+```
+
+Mas, não se preocupe. As tuplas inseridas no banco de dados não serão deletadas com a derrubada do _container_.
+
+5. Execute o seguinte comando para iniciar o app:
 
 Para npm:
 
@@ -87,6 +102,6 @@ Para Yarn:
 $ yarn dev
 ```
 
-5. Abra o Postman e importe o arquivo de coleção Postman [`contact-book-api-requests.postman_collection.json`](./docs/contact-book-api-requests.postman_collection.json) para executar os testes unitários dos serviços de consulta;
+6. Abra o Postman e importe o arquivo de coleção Postman [`contact-book-api-requests.postman_collection.json`](./docs/contact-book-api-requests.postman_collection.json) para executar os testes unitários dos serviços de consulta;
 
 Como alternativa ao Postman, você pode instalar as dependências globais [`newman`](https://npmjs.com/package/newman) e [`newman-reporter-htmlextra`](https://npmjs.com/package/newman-reporter-htmlextra) para gerar relatórios sobre o arquivo em questão via interface de linha de comando e interface gráfica do usuário, respectivamente.
