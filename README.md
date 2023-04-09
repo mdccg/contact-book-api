@@ -17,13 +17,13 @@ Este app consiste em uma API de uma agenda telefônica.
 
 A agenda armazena o nome, o endereço de e-mail, o número de telefone e a data de nascimento de um contato; sendo facultativo apenas o endereço de e-mail. O arquivo [`contact-book-api-requests.postman_collection.json`](./docs/contact-book-api-requests.postman_collection.json), presente no diretório [`docs/`](./docs/), é uma coleção de requisições e testes de API solicitada para a primeira atividade avaliativa da unidade curricular. A coleção contém quatro requisições para salvar novos contatos com diferentes tipos de erros de validação. Cada requisição contém um script de teste que garante que a resposta da API corresponda ao resultado esperado para o erro de validação fornecido. As quatro requisições da coleção consistem em:
 
-1. Salvar um novo contato com dados de entrada válidos. O script de teste verifica se o status da resposta é 201 e se o objeto de contato retornado possui uma propriedade `_id` não nula;
+1. Salvar um novo contato com dados de entrada válidos: O script de teste verifica se o status da resposta é 201 e se o objeto de contato retornado possui uma propriedade `_id` não nula;
 
-2. Impedir que um contato com um nome vazio seja salvo. O script de teste verifica se o status da resposta é 400 e se a mensagem de erro é "Nome não pode estar vazio";
+2. Impedir que um contato com um nome vazio seja salvo: O script de teste verifica se o status da resposta é 400 e se a mensagem de erro é "Nome não pode estar vazio";
 
-3. Impedir que um contato com um e-mail inválido seja salvo. O script de teste verifica se o status da resposta é 400 e se a mensagem de erro é "E-mail inválido";
+3. Impedir que um contato com um e-mail inválido seja salvo: O script de teste verifica se o status da resposta é 400 e se a mensagem de erro é "E-mail inválido";
 
-4. Impedir que um contato com um número de telefone inválido seja salvo. O script de teste verifica se o status da resposta é 400 e se a mensagem de erro é "Número de telefone inválido".
+4. Impedir que um contato com um número de telefone inválido seja salvo: O script de teste verifica se o status da resposta é 400 e se a mensagem de erro é "Número de telefone inválido".
 
 Este foi o segundo repositório de código apresentado no [Curso Superior de TSI do IFMS](https://www.ifms.edu.br/campi/campus-aquidauana/cursos/graduacao/sistemas-para-internet/sistemas-para-internet) como requisito para obtenção da nota parcial das atividades da unidade curricular Linguagem de Programação III.
 
